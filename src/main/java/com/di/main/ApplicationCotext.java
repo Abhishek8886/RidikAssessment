@@ -7,21 +7,21 @@ import com.di.ServiceImpl.SamsungImpl;
 
 public class ApplicationCotext {
 	
-	private final MobileBrands mobileSource;
-	private final MobileBrands landLineSource;
+	private final MobileBrands onePlusSource;
+	private final MobileBrands samsungSource;
 	
 	public ApplicationCotext() {
-		this.mobileSource =   new MobileContext().resource();
-		this.landLineSource =   new LandLineContext().resource();
+		this.onePlusSource =   new OneplusContext().resource();
+		this.samsungSource =   new SamsungContext().resource();
 		
 	}
 	
 	
 	public <T> T  getBeanByName(Class<?> clazz) {
 		if(clazz.getName().equals(OneplusImpl.class.getName())) {
-			return (T)landLineSource;
+			return (T)onePlusSource;
 		}else if(clazz.getName().equals(SamsungImpl.class.getName())) {
-			return (T)mobileSource;
+			return (T)samsungSource;
 		}
 		return null;
 			
@@ -29,8 +29,8 @@ public class ApplicationCotext {
 		
 	}
 	
-	private static class LandLineContext implements OneplusImpl.Provider{}
+	private static class OneplusContext implements OneplusImpl.Provider{}
 	
-	private static class MobileContext implements SamsungImpl.Provider{}
+	private static class SamsungContext implements SamsungImpl.Provider{}
 
 }
